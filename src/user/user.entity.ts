@@ -1,16 +1,24 @@
+import { Field, ObjectType } from '@nestjs/graphql';
 import { Column, Entity, PrimaryGeneratedColumn } from 'typeorm';
 
+@ObjectType()
 @Entity()
 export class UserEntity {
-  @PrimaryGeneratedColumn('uuid')
+  @Field()
+  @PrimaryGeneratedColumn()
   id!: number;
 
+  @Field()
   @Column()
   name!: string;
 
+  @Field()
   @Column()
   description!: string;
 
+  @Field()
   @Column()
-  age!: number;
+  age!: string;
 }
+
+export type UserDto = Omit<UserEntity, 'id'>;
